@@ -1,5 +1,8 @@
+'use strict';
+
 angular.module('myapp',[
-	'ionic'
+	'ionic',
+  'ngCordova'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
 

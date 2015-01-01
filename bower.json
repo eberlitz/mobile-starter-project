@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "ionic": "driftyco/ionic-bower#master"
+    "ionic": "driftyco/ionic-bower#master",
+    "ngCordova": "~0.1.9-alpha"
   }
 }
