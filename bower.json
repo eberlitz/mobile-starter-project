@@ -1,0 +1,20 @@
+{
+  "name": "mobile-starter-pj",
+  "version": "0.0.0",
+  "authors": [
+    "Eduardo Eidelwein Berlitz <eberlitz@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ionic": "driftyco/ionic-bower#master"
+  }
+}
