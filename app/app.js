@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('myapp',[
-	'ionic',
+angular.module('myapp', [
+  'ionic',
   'ngCordova'
 ])
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
@@ -18,5 +19,18 @@ angular.module('myapp',[
       controller: 'HomeController'
     });
 
-   $urlRouterProvider.otherwise('/sign-in');
+  $urlRouterProvider.otherwise('/sign-in');
+})
+
+.run(function($ionicPlatform) {
+
+  $ionicPlatform.ready(function() {
+    if (ionic.Platform.isWebView()) {
+      navigator && navigator.splashscreen && navigator.splashscreen.hide();
+      if (ionic.Platform.isAndroid()) {
+        window.StatusBar && StatusBar.hide();
+      }
+    }
+  });
+
 });

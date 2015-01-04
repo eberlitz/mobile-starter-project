@@ -11,6 +11,7 @@ var concat = require('gulp-concat'),
     ngAnnotate = require('gulp-ng-annotate'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
+    merge = require('merge-stream'),
     sass = require('gulp-sass'),
     minifyCss = require('gulp-minify-css'),
     phonegapBuild = require('gulp-phonegap-build'),
@@ -24,8 +25,8 @@ var concat = require('gulp-concat'),
 var distPath = './dist';
 // load sensitive data from a config file, so we don't upload it to the github repository
 var sensitiveData;
-if (fs.existsSync('config.json')){
-    sensitiveData = JSON.parse(fs.readFileSync('config.json', 'utf8'));   
+if (fs.existsSync('config.json')) {
+    sensitiveData = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 }
 
 // -------------------------------------------------------------------------------------- 
@@ -72,8 +73,14 @@ gulp.task('templates', function() {
 
 // assets
 gulp.task('assets', function() {
-    return gulp.src('./lib/ionic/fonts/**/*')
+    var fonts = gulp.src('./lib/ionic/fonts/**/*')
         .pipe(gulp.dest(path.join(distPath, 'fonts')));
+    var res = gulp.src('./res/**/*')
+        .pipe(gulp.dest(path.join(distPath, 'res')));
+    var configXml = gulp.src('./config.xml')
+        .pipe(gulp.dest(distPath));
+
+    return merge(fonts, res, configXml);
 });
 
 // -------------------------------------------------------------------------------------- 
